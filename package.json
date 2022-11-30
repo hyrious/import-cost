@@ -1,6 +1,6 @@
 {
   "name": "@hyrious/import-cost",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Get package size of import statements, powered by esbuild",
   "author": "hyrious <hyrious@outlook.com>",
   "license": "MIT",
