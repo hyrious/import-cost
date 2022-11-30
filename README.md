@@ -53,7 +53,7 @@ cache.clear()
 
 ## Related Works
 
-- vscode-import-cost: The VS Code extension that uses this package. // TODO
+- [vscode-import-cost](https://github.com/hyrious/vscode-import-cost): The VS Code extension that uses this package.
 
 ## License
 
