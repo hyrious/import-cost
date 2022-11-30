@@ -1,7 +1,6 @@
 import { dirname } from 'node:path'
 
 import type { Message } from 'esbuild'
-import { build } from 'esbuild'
 import { gzipSize } from 'gzip-size'
 
 import type { PackageInfo } from './babel'
@@ -9,6 +8,11 @@ import type { PackageInfo } from './babel'
 export interface PackageInfoWithSize extends PackageInfo {
   size: number
   gzip: number
+}
+
+export interface getSizeOptions {
+  esbuildPath?: string
+  external?: string[]
 }
 
 export interface GetSizeResult {
@@ -19,9 +23,11 @@ export interface GetSizeResult {
 
 export const cache = new Map<string, GetSizeResult>()
 
-export async function getSize({ path, name, line, string }: PackageInfo, external?: string[]): Promise<GetSizeResult> {
+export async function getSize({ path, name, line, string }: PackageInfo, { esbuildPath, external }: getSizeOptions = {}): Promise<GetSizeResult> {
   if (cache.has(string))
     return cache.get(string)!
+
+  const { build } = await import(esbuildPath ?? 'esbuild')
 
   const { errors, warnings, outputFiles } = await build({
     stdin: {
