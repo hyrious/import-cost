@@ -1,3 +1,7 @@
 {
-  "extends": "@antfu"
+  "extends": "@antfu",
+  "overrides": [
+    { "files": [ "test/*.ts" ],
+      "rules": { "no-void": "off" } }
+  ]
 }

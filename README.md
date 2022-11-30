@@ -43,6 +43,14 @@ const result = await importCost('file.ts', `
     - `size` {Number} The size of the package in bytes.
     - `gzip` {Number} The size of the package in bytes after gzip.
 
+#### cache
+
+```js
+import { cache } from '@hyrious/import-cost'
+
+cache.clear()
+```
+
 ## Related Works
 
 - vscode-import-cost: The VS Code extension that uses this package. // TODO

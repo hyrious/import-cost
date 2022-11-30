@@ -1,31 +1,21 @@
 #!/usr/bin/env node
 import fs from 'node:fs'
-import tty from 'node:tty'
 import sade from 'sade'
 import prettyBytes from 'pretty-bytes'
-import { formatMessages } from 'esbuild'
 
 import { importCost } from './dist/index.mjs'
 
-const hasColors = tty.WriteStream.prototype.hasColors()
-/**
- * @param {import('esbuild').Message} messages
- * @param {'error' | 'warning'} kind
- */
-async function printMessages(errors, kind) {
-  const messages = await formatMessages(errors, { kind, color: hasColors })
-  messages.forEach(message => console.error(message.text))
+function node_modules_only(path) {
+  return /^[@a-z]/.test(path)
 }
 
 async function main(path, opts) {
   const external = opts.external ? opts.external.split(',') : undefined
-  const { errors, warnings, packages } = await importCost(path, fs.readFileSync(path, 'utf8'), { external })
-  printMessages(errors, 'error')
-  printMessages(warnings, 'warning')
+  const { packages } = await importCost(path, fs.readFileSync(path, 'utf8'), { external, filter: node_modules_only })
   const headers = ['Package', 'Cost', 'Where']
   const widths = [7, 4, 5]
   const rows = packages.map((pkg) => {
-    const row = [pkg.name, `${prettyBytes(pkg.size)} (gzip ${prettyBytes(pkg.gzip)})`, `${pkg.path}:${pkg.line}`]
+    const row = [pkg.name, `${prettyBytes(pkg.size)} (gzipped: ${prettyBytes(pkg.gzip)})`, `${pkg.path}:${pkg.line}`]
     row.forEach((col, i) => {
       widths[i] = Math.max(widths[i], col.length)
     })
