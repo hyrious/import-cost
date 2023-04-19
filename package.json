@@ -28,29 +28,24 @@
   "peerDependencies": {
     "esbuild": "*"
   },
-  "peerDependenciesMeta": {
-    "esbuild": {
-      "optional": true
-    }
-  },
   "dependencies": {
-    "@babel/parser": "^7.20.5",
-    "@babel/traverse": "^7.20.5",
-    "@babel/types": "^7.20.5",
+    "@babel/parser": "^7.21.4",
+    "@babel/traverse": "^7.21.4",
+    "@babel/types": "^7.21.4",
     "builtin-modules": "^3.3.0",
     "escalade": "^3.1.1",
     "gzip-size": "^7.0.0",
-    "pretty-bytes": "^6.0.0",
+    "pretty-bytes": "^6.1.0",
     "sade": "^1.8.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.31.0",
-    "@types/node": "^18.11.9",
-    "esbuild": "^0.15.16",
-    "eslint": "^8.28.0",
+    "@antfu/eslint-config": "^0.38.5",
+    "@types/node": "^18.15.11",
+    "esbuild": "^0.17.17",
+    "eslint": "^8.38.0",
     "lodash-es": "^4.17.21",
-    "tsup": "^6.5.0",
+    "tsup": "^6.7.0",
     "types-babel-traverse": "npm:@types/babel__traverse@7.18.3",
-    "typescript": "^4.9.3"
+    "typescript": "^5.0.4"
   }
 }
