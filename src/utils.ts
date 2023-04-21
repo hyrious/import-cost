@@ -32,7 +32,7 @@ export function extractScriptFromHtml(html: string) {
   const script = html.match(/<script[^>]*>([\s\S]*?)<\/script>/)
   if (script) {
     const source = script[1]
-    const line = html.slice(0, script.index).split('\n').length
+    const line = html.split('\n').findIndex(line => line.includes('<script'))
     return { source, line }
   }
   else {
